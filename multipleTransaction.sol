@@ -21,7 +21,15 @@ contract payout {
 
     // for refrence check for mat in Example Enter.js
 
-    function payCheck(address[] _payaoutDict) payable public{
-        for (uint )
+    function payCheck(address[] calldata _addressPay, uint[] calldata _amountPay) payable public{
+        require(_addressPay.length == _amountPay.length);
+        uint totalNow = 0;
+        for (uint j=0; j<_addressPay.length;j++){
+            uint amount = _amountPay[j];
+            address daAdd = _addressPay[j];
+
+            totalNow += amount;
+        }
+        require(msg.value >= totalNow);
     }
 }
