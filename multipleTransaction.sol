@@ -9,7 +9,7 @@ contract payout {
     event Transfer(address sender, address receiver, uint amount);
 
     function splitETH(address[] calldata _wallets, uint _howmuchInEth) payable public{
-        require(_howmuchInEth < msg.value * WeiToETH);
+        require(_howmuchInEth < msg.value * WeiToETH, "You don't have that much money");
         // find how much if an equal split
         uint muchPer = _howmuchInEth / _wallets.length;
         // loop through
@@ -22,14 +22,22 @@ contract payout {
     // for refrence check for mat in Example Enter.js
 
     function payCheck(address[] calldata _addressPay, uint[] calldata _amountPay) payable public{
+        //if they're not the same length thats gonna cause a serious probblem
         require(_addressPay.length == _amountPay.length);
+        //we're gonna add them up so we make sure they have enough  money
         uint totalNow = 0;
         for (uint j=0; j<_addressPay.length;j++){
             uint amount = _amountPay[j];
-            address daAdd = _addressPay[j];
-
+            //make sure they have enough
             totalNow += amount;
         }
-        require(msg.value >= totalNow);
+        require(msg.value >= totalNow,"You don't have that much money");
+        //running it 4 real now
+        for (uint j=0; j<_addressPay.length;j++){
+            uint much = _amountPay[j];
+            address daWallet = _addressPay[j];
+            //send them the money
+            emit Transfer(msg.sender, daWallet, much);
+        }
     }
 }
