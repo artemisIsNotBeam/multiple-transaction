@@ -9,7 +9,8 @@ contract payout {
         address daPerson;
         address Payer;
     }
-    mapping (address => uint) public payDict;
+    mapping (address => Person) public payDict;
+    //Note this gonna payout every month
 
     event Deposit(address sender, uint amount);
     event Transfer(address sender, address receiver, uint amount);
@@ -48,6 +49,10 @@ contract payout {
     }
 
     function payRoll() public{
+        
+    }
+
+    function claimPayRoll() public{
 
     }
 }
