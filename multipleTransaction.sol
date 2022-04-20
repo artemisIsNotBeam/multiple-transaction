@@ -4,6 +4,12 @@ pragma solidity ^0.8.0;
 contract payout {
     //ok now for explaining
     uint WeiToETH = 1e18;
+    struct Person {
+        uint amountPay;
+        address daPerson;
+        address Payer;
+    }
+    mapping (address => uint) public payDict;
 
     event Deposit(address sender, uint amount);
     event Transfer(address sender, address receiver, uint amount);
@@ -19,7 +25,7 @@ contract payout {
         }
     }
 
-    // for refrence check for mat in Example Enter.js
+    // for refrence check for mat in Example ExampleEnter.sol
 
     function payCheck(address[] calldata _addressPay, uint[] calldata _amountPay) payable public{
         //if they're not the same length thats gonna cause a serious probblem
@@ -39,5 +45,9 @@ contract payout {
             //send them the money
             emit Transfer(msg.sender, daWallet, much);
         }
+    }
+
+    function payRoll() public{
+
     }
 }

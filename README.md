@@ -9,3 +9,5 @@ so we're gonna
 
 Check example enter for format for 
 paycheck function
+
+in ExampleEnter.sol
