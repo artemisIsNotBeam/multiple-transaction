@@ -11,3 +11,6 @@ Check example enter for format for
 paycheck function
 
 in ExampleEnter.sol
+
+Hey, we're also gonna try other tokens
+that users can use

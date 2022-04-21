@@ -1,16 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+import "token/ERC20/ERC20.sol";
+import "token/ERC20/IERC20.sol";
+
+
+interface ERC20 {
+    function balanceOf(address owner) external view returns (unit);
+    function allowance(address owner, address spender) external view returns (unit);
+    function approve(address spender, uint value) external returns (bool);
+    function transfer(address to, uint value) external returns (bool);
+    function transferFrom(address from, address to, uint value) external returns (bool); 
+}
 
 contract payout {
     //ok now for explaining
     uint WeiToETH = 1e18;
-    struct Person {
-        uint amountPay;
-        address daPerson;
-        address Payer;
-    }
-    mapping (address => Person) public payDict;
-    //Note this gonna payout every month
 
     event Deposit(address sender, uint amount);
     event Transfer(address sender, address receiver, uint amount);
@@ -46,13 +50,5 @@ contract payout {
             //send them the money
             emit Transfer(msg.sender, daWallet, much);
         }
-    }
-
-    function payRoll() public{
-        
-    }
-
-    function claimPayRoll() public{
-
     }
 }
