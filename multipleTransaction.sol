@@ -51,4 +51,16 @@ contract payout {
             emit Transfer(msg.sender, daWallet, much);
         }
     }
+
+    // TODO do this link https://stackoverflow.com/questions/65846335/how-to-send-erc20-token-to-smart-contract-balance
+    // ALso, whenever they use this in code its refrencing its own address
+
+    function Transfer(address _owner, address _token, unit _amount, address _who) public {
+        ERC20(_token).transferFrom(_owner, _who, _amount);
+    }
+    // need these two functions before the other 2
+    function getBalanceOfToken(address _address, address _tokenAdd) public view returns (unit) {
+        return ERC20(_address).balanceOf(address(this));
+    }
+
 }
