@@ -63,4 +63,15 @@ contract payout {
         return ERC20(_address).balanceOf(address(this));
     }
 
+    function splitERC(address[] calldata _wallets, uint _howmuch, address _tokenAdd) public{
+        //first get how much they have
+        // make sure they can send enough or throw an error
+        //finally use a for loop to send them money.
+        uint theyHave = getBalanceOfToken(msg.sender, _tokenAdd);
+        require(theyHave > _howmuch);
+        uint mountPer = _howmuch/_wallets;
+        for(uint i=0;i<_wallets.length;i++){
+            Transfer(msg.sender, _tokenAdd, mountPer, _wallets[i]);
+        }
+    }
 }
