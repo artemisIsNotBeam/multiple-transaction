@@ -55,7 +55,7 @@ contract payout {
     // TODO do this link https://stackoverflow.com/questions/65846335/how-to-send-erc20-token-to-smart-contract-balance
     // ALso, whenever they use this in code its refrencing its own address
 
-    function Transfer(address _owner, address _token, unit _amount, address _who) public {
+    function TransferERC(address _owner, address _token, unit _amount, address _who) public {
         ERC20(_token).transferFrom(_owner, _who, _amount);
     }
     // need these two functions before the other 2
@@ -71,7 +71,7 @@ contract payout {
         require(theyHave > _howmuch);
         uint mountPer = _howmuch/_wallets;
         for(uint i=0;i<_wallets.length;i++){
-            Transfer(msg.sender, _tokenAdd, mountPer, _wallets[i]);
+            TransferERC(msg.sender, _tokenAdd, mountPer, _wallets[i]);
         }
     }
 
@@ -89,7 +89,7 @@ contract payout {
             uint much = _amountPay[j];
             address daWallet = _addressPay[j];
             //send them the money
-            Transfer(msg.sender, _tokenAdd, _amountPay[j], _addressPay[j]);
+            TransferERC(msg.sender, _tokenAdd, _amountPay[j], _addressPay[j]);
         }
     }
 }
